@@ -13,7 +13,7 @@ class IPv4RandomNetwork(IPv4Network):
     def regulars(self):
         return self.is_global and not (self.is_loopback or self.is_link_local or self.is_multicast or self.is_private or self.is_reserved or self.is_unspecified)
     def key_value(self):
-        return self.netmask
+        return int(self.network_address) + (int(self.netmask) << 32)
 random.seed()
 
 randlist: List[IPv4RandomNetwork] = []
