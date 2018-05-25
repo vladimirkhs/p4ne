@@ -1,11 +1,12 @@
 #
-#  Lab 2.3 + Дополнительное задание 1
+#  Lab 2.3 + Дополнительное задание 1 и 2
 #
 import requests
 #import json
 #import pprint
 from flask import Flask
 from flask import jsonify
+from flask import render_template
 url = 'https://sandboxapic.cisco.com/api/v1'
 url1 = '/host'
 url2 = '/network-device'
@@ -23,8 +24,12 @@ resp_t = requests.get(url + url3, headers=header, verify=False)
 
 app = Flask(__name__)
 
+@app.route("/")
+def index1():
+    return render_template("topology.html")
+
 @app.route('/api/topology')
-def index():
+def index0():
     return jsonify(resp_t.json()['response'])
 
 if __name__ == '__main__':
